@@ -1,7 +1,14 @@
-# Hello World! in Solidity
+# Avax-Eth Assignment
 
+Going to use require(), assert() and revert() functions
 
-## Install
+## Description
+
+Using truffle and its feature to run our solidity contracts.
+
+## Getting Started
+
+### Installing
 
 1. Install [Node.js](https://nodejs.org)
 
@@ -24,6 +31,8 @@
 
    After initialization, you will find two folders called `contracts` and `migrations`. Contracts go in the `contracts` folder while contract deployment settings go in `migrations`.
 
+### Executing program
+
 2. The "Hello World!" contract
 
    This is an example of a "Hello World!" contract in Solidity. 
@@ -35,7 +44,19 @@
    pragma solidity ^0.8.17;
    
    contract HelloWorld {
-       string public greet = "Hello World!";
+       function requireExample(uint256 a, uint256 b) public pure returns (uint256) {
+        require(b != 0, "Division by zero is not allowed");
+        return a / b;
+    }
+
+    function assertExample(uint256 a, uint256 b) public pure returns (uint256) {
+        assert(b != 0);
+        return a / b;
+    }
+
+    function revertExample() public pure {
+        revert("This is a custom revert message");
+    }
    }   
    ```
 
@@ -70,11 +91,7 @@
 
    ```javascript
    let instance = await HelloWorld.deployed()
-   instance.greet()
-   ```
-
-   Then you will see:
-
-   ```bash
-   'Hello World!'
+   instance.revertExample()
+   instance.assertExample(10,0)
+   instance.requireExample(10,0)
    ```
